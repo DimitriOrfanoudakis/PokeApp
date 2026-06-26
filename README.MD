@@ -9,18 +9,19 @@ Please check the **Installation** section on how to run it on your pc.
 ## Installation
 
 1. Clone the repository:
-    git clone https://github.com/DimitriOrfanoudakis/PokeApp
-    cd PokeApp
+    - git clone https://github.com/DimitriOrfanoudakis/PokeApp
+    - cd PokeApp
 2. Create and activate a virtual environment:
-    python -m venv venv (if not working, try python3 -m venv venv)
+    - python -m venv venv 
+    - (if not working, try python3 -m venv venv)
     
-    Windows(Command Prompt): venv\Scripts\activate.bat
-    Windows(Powershell): venv\Scripts\Activate.ps1
-    MacOS/Linux: source venv/bin/activate
+    - Windows(Command Prompt): venv\Scripts\activate.bat
+    - Windows(Powershell): venv\Scripts\Activate.ps1
+    - MacOS/Linux: source venv/bin/activate
 3. Install dependencies:
-    pip install -r requirements.txt
+    - pip install -r requirements.txt
 4. Run the app:
-    python app.py
+    - python app.py
 
 
 ## Development Process
