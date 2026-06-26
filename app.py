@@ -73,7 +73,7 @@ class PokedexApp:
     def _load_pokemon_list(self):
         """Fetch list of Pokemon names from API"""
         try:
-            r = requests.get(f'https://pokeapi.co/api/v2/pokemon?limit={self.POKEMON_LIMIT}', timeout=5) # Limit=386 for up to 3rd generation
+            r = requests.get(f'https://pokeapi.co/api/v2/pokemon?limit={self.POKEMON_LIMIT}', timeout=5) 
             r.raise_for_status()
             r_dict = r.json()
             return [poke['name'] for poke in r_dict.get('results', [])]
@@ -122,13 +122,13 @@ class PokedexApp:
     def display_error(self):
         """Display an error if name not found """
         self.name_label.configure(text="ERROR")
-        # 1. Open the local image file using PIL
+        # Open the local image file using PIL
         local_image = Image.open("error.png")            
-        # 2. Resize it to match the standard sprite dimensions (200x200)
+        # Resize it to match the standard sprite dimensions (200x200)
         local_image = local_image.resize((200, 200), Image.Resampling.LANCZOS)            
-        # 3. Wrap it in a CustomTkinter image container
+        # Wrap it in a CustomTkinter image container
         error_photo = ctk.CTkImage(light_image=local_image, dark_image=local_image, size=(200, 200))            
-        # 4. Apply it to the label and save a reference to prevent garbage collection
+        # Apply it to the label and save a reference to prevent garbage collection
         self.image_label.configure(image=error_photo)
         self.image_label.image = error_photo
         self.info_label.configure(text="There is no pokemon with that name.\nPlease try again!")
@@ -167,7 +167,7 @@ class PokedexApp:
                 image_data = (Image.open(BytesIO(response.content))).resize((spr_w, spr_h), Image.Resampling.LANCZOS)
                 photo = ctk.CTkImage(light_image=image_data, dark_image=image_data, size=(spr_w, spr_h))
                 self.image_label.configure(image=photo)
-                self.image_label.image = photo  # Keep a reference!
+                self.image_label.image = photo  # Keep a reference to prevent gargabe collection
         except Exception as e:
             print(f'Could not load image sprite: {e}')
     
@@ -194,6 +194,7 @@ class PokedexApp:
             self.info_label.configure(text=info)
 
 def setup_window(root):
+    """Sets up and configures the window so it has the same proportions on any screen"""
     # Add title and icon    
     root.title("Pokéfan")
     root.iconbitmap('pokemon.ico')
