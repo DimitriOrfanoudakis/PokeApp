@@ -24,6 +24,12 @@ Please check the **Installation** section on how to run it on your pc.
 4. Run the app:
     - python app.py
 
+## How to use
+- Click the "Random Pokémon" button display a random pokémon.
+- Click the "Search" button to search for a specific pokémon. Search is NOT case-sensitive.
+
+By default, this app only requests pokémon from the first three generations. If you would like to display or search pokémon 
+from later generations, you can change the POKEMON_LIMIT variable inside the PokedexApp Class.
 
 ## Development Process
 This was created as a learning project to get to know a GUI library in Python.
@@ -49,7 +55,7 @@ Biggest challenge:
 
 
 
-🇩🇪🇦🇹🇨🇭 DE
+# 🇩🇪🇦🇹🇨🇭 DE
 
 ## Beschreibung
 Eine kleine Desktop-App, die sich mit der *PokéAPI* verbindet und ein paar Infos über zufällige oder gesuchte Pokémon anzeigt.
@@ -72,6 +78,13 @@ Zum ausführen der App auf dem eigenen PC, bitte den Anweisungen unter **Install
     - pip install -r requirements.txt
 4. App ausführen:
     - python app.py
+
+## Nutzung
+- "Random Pokémon" anklicken um ein zufälliges Pokémon anzeigen zu lassen.
+- "Search" anklicken um nach einem Pokémon zu suchen. Groß- und Kleinschreibung spielen KEINE Rolle.
+
+Die App arbeitet standardmäßig nur mit Pokémon der ersten drei Generationen. Um Pokémon aus späteren Generationen anzuzeigen, 
+kann die Variable POKEMON_LIMIT innerhalb der PokedexApp Klasse angepasst werden.
 
 ## Entwicklungsprozess
 Die App begann als Lernprojekt um zum ersten Mal eine GUI in Python kennenzulernen.
