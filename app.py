@@ -20,11 +20,10 @@ class Pokemon:
     
     def check_cache(self):
         """"Check Pokemon name before API request"""
-        if self.poke_cache.get(self.name):
-            self.data = self.poke_cache.get(self.name)            
-            return True
-        else:
-            return None
+        cached_data = self.poke_cache.get(self.name)
+        if cached_data:
+            self.data = cached_data           
+            return True        
     
     def fetch_data(self):
         """Fetch Pokemon data from API"""
@@ -49,11 +48,11 @@ class Pokemon:
             return self.data['cries']['legacy']
         return None
     
-    def get_height(self) -> float:
+    def get_height(self):
         """Height in decimetres (converted to m before returning)"""
         return (self.data['height'] /10) if self.data else None
     
-    def get_weight(self) -> float:
+    def get_weight(self):
         """Weight in hectograms (converted to kg before returning)"""
         return (self.data['weight'] /10) if self.data else None
     
