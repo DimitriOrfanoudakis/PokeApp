@@ -148,13 +148,13 @@ class PokedexApp:
         # need to delay the call .iconbitmap() at least 200ms or ctk overwrites with default icon
         dialog.after(250, lambda: dialog.iconbitmap("pokemon.ico"))
         searched_name = dialog.get_input()
-
-        if searched_name.lower() in self.poke_names:
-            self.display_pokemon(searched_name.lower())
-        elif searched_name is None:
-            return
+        if searched_name != None:
+            if searched_name.lower() in self.poke_names:
+                self.display_pokemon(searched_name.lower())            
+            else:
+                self.display_error()
         else:
-            self.display_error() 
+            return 
 
     def display_sprite(self):
         """Load and display the Pokemon sprite"""
