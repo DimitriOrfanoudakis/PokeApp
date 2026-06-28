@@ -7,20 +7,32 @@ import pygame
 
 DEFAULT_WIDTH = 280
 DEFAULT_HEIGHT = 360
+POKEMON_LIMIT = 386 # Only pokemon from first 3 generations
 
 class Pokemon:
+    poke_cache = {} # Cache fetched pokemon data, so every name only fetches once from API
     def __init__(self, name):
         self.name = name
         self.data = None
         self.photo = None
-        self.fetch_data()
+        if not self.check_cache():
+            self.fetch_data()
+    
+    def check_cache(self):
+        """"Check Pokemon name before API request"""
+        if self.poke_cache.get(self.name):
+            self.data = self.poke_cache.get(self.name)            
+            return True
+        else:
+            return None
     
     def fetch_data(self):
-        """Fetch Pokemon data from API once"""
+        """Fetch Pokemon data from API"""
         try:
             r = requests.get(f'https://pokeapi.co/api/v2/pokemon/{self.name}')
             r.raise_for_status()
             self.data = r.json()
+            self.poke_cache.update({self.name : self.data})            
         except requests.RequestException as e:
             print(f"Error fetching {self.name}: {e}")
             self.data = None
@@ -56,7 +68,7 @@ class Pokemon:
 
 # GUI setup
 class PokedexApp:
-    POKEMON_LIMIT = 386 # Only pokemon from first 3 generations
+    
 
     def __init__(self, root):
         self.root = root
@@ -73,7 +85,7 @@ class PokedexApp:
     def _load_pokemon_list(self):
         """Fetch list of Pokemon names from API"""
         try:
-            r = requests.get(f'https://pokeapi.co/api/v2/pokemon?limit={self.POKEMON_LIMIT}', timeout=5) 
+            r = requests.get(f'https://pokeapi.co/api/v2/pokemon?limit={POKEMON_LIMIT}', timeout=5) 
             r.raise_for_status()
             r_dict = r.json()
             return [poke['name'] for poke in r_dict.get('results', [])]
